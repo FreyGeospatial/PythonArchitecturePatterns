@@ -15,3 +15,5 @@ def test_allocating_to_a_batch_reduces_the_available_quantity():
 
     assert batch.available_quantity == 18
 
+# although we've written a lot of code just to subtract one value from another, modeling
+# our domain will probably pay off.
