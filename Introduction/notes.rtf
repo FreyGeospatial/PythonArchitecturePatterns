@@ -1,14 +1,27 @@
-{\rtf1\ansi\ansicpg1252\cocoartf2638
+{\rtf1\ansi\ansicpg1252\cocoartf2639
 \cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fswiss\fcharset0 Helvetica-Bold;\f2\fswiss\fcharset0 Helvetica-Oblique;
 }
 {\colortbl;\red255\green255\blue255;}
 {\*\expandedcolortbl;;}
-{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}.}{\leveltext\leveltemplateid1\'02\'00.;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid1}}
-{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}.}{\leveltext\leveltemplateid1\'02\'00.;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid1}
+{\list\listtemplateid2\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}.}{\leveltext\leveltemplateid101\'02\'00.;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid2}
+{\list\listtemplateid3\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid201\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid3}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}{\listoverride\listid2\listoverridecount0\ls2}{\listoverride\listid3\listoverridecount0\ls3}}
 \margl1440\margr1440\vieww11520\viewh8400\viewkind0
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
-\f0\fs24 \cf0 Encapsulation and abstraction help us by hiding details of code and protecting consistency of data. However, these also create dependencies.\
+\f0\fs24 \cf0 How to manage complexity:\
+\pard\tx220\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li720\fi-720\pardirnatural\partightenfactor0
+\ls1\ilvl0\cf0 {\listtext	1.	}
+\f1\b Test Driven development (TDD)
+\f0\b0 . It helps us build code and enables us to refactor or add new features without fear of \ul regression\ulnone  (that is, effecting existing functionality or the introduction of bugs)\
+{\listtext	2.	}
+\f1\b Domain-driven design (DDD).
+\f0\b0  Building a good model of the business domain.\
+{\listtext	3.	}Loosely coupled microservices integrated via messages (also called reactive micro services)\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \
+Encapsulation and abstraction help us by hiding details of code and protecting consistency of data. However, these also create dependencies.\
 \
 Dependencies can become out of control, where changing one node becomes difficult as it can affect the entire system. 
 \f1\b Layered architecture
@@ -18,14 +31,23 @@ Dependencies can become out of control, where changing one node becomes difficul
 \f1\b Three-layered architecture
 \f0\b0  is most common.\
 \pard\tx220\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li720\fi-720\pardirnatural\partightenfactor0
-\ls1\ilvl0\cf0 {\listtext	1.	}User Interface\
+\ls2\ilvl0\cf0 {\listtext	1.	}User Interface\
 {\listtext	2.	}Business Logic\
 {\listtext	3.	}Database\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 \cf0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
-\f2\i Business logic should not depend on technical details.
+\f2\i \cf0 Business logic should not depend on technical details.
 \f0\i0  High level modules should be easy to change in response to business needs, though low level modules (details) are in practice harder to change. Adding an abstraction between the high level and low level *details* allow us to more easily make changes.\
 \
 \ul The most common reason that designs fail:\ulnone  Business logic spreads throughout layers of application, making them hard to identify, understand, and change.\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f1\b \cf0 Dependency Inversion Principle (DIP):\
+\pard\tx220\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li720\fi-720\pardirnatural\partightenfactor0
+\ls3\ilvl0\cf0 {\listtext	\uc0\u8226 	}
+\f0\b0 high-level modules should not depend on low-level modules. Both should depend on abstractions\
+{\listtext	\uc0\u8226 	}Abstractions should not depend on details. Instead, details should depend on abstractions\
 }
