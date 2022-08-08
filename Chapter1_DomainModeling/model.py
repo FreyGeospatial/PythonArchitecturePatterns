@@ -50,7 +50,7 @@ class Batch:
         """sums the quantity of allocations"""
         return sum(line.qty for line in self._allocations)
     
-    @property
+    @property # by setting the @property decorator, we can access this function as a class attribute, without paranetheses!
     def available_quantity(self) -> int:
         """finds the remaining batch inventory after order lines have been placed"""
         return self._purchased_quantity - self.allocated_quantity
@@ -60,5 +60,6 @@ class Batch:
         Do we have the product listed in the system?
         Do we have the item in stock?
         """
-        return self.sku == line.sku and self.available_quantity >= line.qty
+        return self.sku == line.sku and self.available_quantity >= line.qty # see here how no parantheses were used for available_quantity method.
+                                                                            # note that if we tried, paranetheses would no longer work
 
