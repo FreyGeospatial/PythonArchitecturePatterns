@@ -1,15 +1,20 @@
 from dataclasses import dataclass
 from datetime import date
-from typing import Optional, Set
+from typing import Optional, Set, NewType
+
+# here, I will create a type of my own creation. E.g., instead of simply being "str", it could be of type "Sku"
+Sku = NewType("sku", str)
+Orderid = NewType("orderid", str)
+Qty = NewType("qty", int)
 
 # to note:
 # a set is an unordered, unchangeable, unindexed collection. No duplicates are accepted
 
 @dataclass(frozen=True) # frozen dataclasses mean that an object cannot be modified!
 class OrderLine:
-    orderid: str
-    sku: str
-    qty: int
+    orderid: Orderid
+    sku: Sku
+    qty: Qty
 
 class Batch:
     def __init__(self, ref: str, sku: str, qty: int, eta: Optional[date]):
