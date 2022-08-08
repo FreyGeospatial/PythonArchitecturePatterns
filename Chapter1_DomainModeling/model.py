@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from datetime import date
+from locale import currency
 from typing import Optional, Set
 
 # to note:
@@ -7,6 +8,19 @@ from typing import Optional, Set
 
 @dataclass(frozen=True) # frozen dataclasses mean that an object cannot be modified!
 class OrderLine:
+    """
+    What actually is a lne? An order can have multiple line items, where
+    each line has a SKU and a quantity. While an order has a reference that
+    uniquely identifies it, a line does not. Whenever we have a business concept
+    that contains data but no identity, we often choose to represent it using the
+    Value Object Pattern.
+
+    A value object is any domain object that is uniquely identified by the data it holds.
+    As such, we often make them ummutable.
+
+    E.g, two lnes with the same orderid, sku, and qty are equal. See the 'money' example in
+    value_object.py and its test file.
+    """
     orderid: str
     sku: str
     qty: int
