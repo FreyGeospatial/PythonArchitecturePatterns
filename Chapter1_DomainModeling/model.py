@@ -1,6 +1,5 @@
 from dataclasses import dataclass
 from datetime import date
-from locale import currency
 from typing import Optional, Set
 
 # to note:
@@ -42,6 +41,20 @@ class Batch:
         self.eta: Optional[date] = eta
         self._purchased_quantity: int = qty # the amount of inventory available
         self._allocations: Set[OrderLine] = set() # of type set, which can contain OderLines
+    
+    def __eq__(self, other):
+        """
+        It is better to be explicit here, when comparing two class objects.
+        If the Batch shares a reference number, the two are the same. Allows us
+        to directorly compare them using `==` operator
+        """
+        if not isinstance(other, Batch):
+            return False
+        return other.reference == self.reference
+    
+    def __hash__(self):
+        """lets find out more about what this does!"""
+        return hash(self.reference)
 
     # If a string is the first thing presented in a function, by
     # default it becomes the docstring. To access, use `help(Batch.allocate)`
