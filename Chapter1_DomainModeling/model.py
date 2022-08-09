@@ -1,9 +1,12 @@
 from dataclasses import dataclass
 from datetime import date
-from typing import Optional, Set
+from typing import Optional, Set, List
 
 # to note:
 # a set is an unordered, unchangeable, unindexed collection. No duplicates are accepted
+
+class OutOfStock(Exception):
+    pass
 
 @dataclass(frozen=True) # frozen dataclasses mean that an object cannot be modified!
 class OrderLine:
@@ -23,6 +26,7 @@ class OrderLine:
     orderid: str
     sku: str
     qty: int
+
 
 class Batch:
     def __init__(self, ref: str, sku: str, qty: int, eta: Optional[date]):
@@ -56,8 +60,15 @@ class Batch:
         """lets find out more about what this does!"""
         return hash(self.reference)
 
-    # If a string is the first thing presented in a function, by
-    # default it becomes the docstring. To access, use `help(Batch.allocate)`
+    def __gt__(self, other):
+        """required when sorting. we define here how we sort!"""
+        if self.eta is None:
+            return False
+        if other.eta is None:
+            return True
+        return self.eta > other.eta
+
+
     def allocate(self, line: OrderLine) -> None:
         """
         add the orderline to the set
@@ -90,3 +101,10 @@ class Batch:
         return self.sku == line.sku and self.available_quantity >= line.qty # see here how no parantheses were used for available_quantity method.
                                                                             # note that if we tried, paranetheses would no longer work
 
+def allocate(line: OrderLine, batches: List[Batch]) -> str:
+    try:
+        batch = next(b for b in sorted(batches) if b.can_allocate(line))
+        batch.allocate(line)
+        return batch.reference
+    except StopIteration:
+        raise OutOfStock(f'Out of stock for sku {line.sku}')

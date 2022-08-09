@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import date, timedelta
 from typing import Tuple
 
 from model import Batch, OrderLine
@@ -58,3 +58,4 @@ def test_allocation_is_idempotent() -> None:
     batch.allocate(line)
     batch.allocate(line)
     assert batch.available_quantity == 18
+
